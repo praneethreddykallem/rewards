@@ -20,3 +20,36 @@ A customer receives 2 points for every dollar spent over $100 in each transactio
  - Try it out in swagger : http://localhost:8080/swagger-ui.html
  
  - Sample input available in the root folder: sampleInput.json
+ 
+##Sample: 
+ 
+ - Request
+ 
+ [{
+		"transactionId": 1,
+		"customerName": "Greg",
+		"amount": 120,
+		"transactionDate": "05-01-2019"
+	},
+	{
+		"transactionId": 1,
+		"customerName": "Paul",
+		"amount": 75,
+		"transactionDate": "05-21-2019"
+	}
+ ]
+  
+  - Response
+  
+  {
+  "Greg": {
+    "TOTAL": 90,
+    "MAY": 90
+  },
+  "Paul": {
+    "TOTAL": 25,
+    "MAY": 25
+  }
+}
+  
+  
