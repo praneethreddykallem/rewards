@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.rewards.domain.Transaction;
 
 @Repository
-public interface TransactionRepository extends CrudRepository<Transaction, String> {
+public interface TransactionRepository extends CrudRepository<Transaction, Integer> {
 
 	List<Transaction> findByCustomerName(String customerName);
 	
