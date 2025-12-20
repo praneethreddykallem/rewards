@@ -9,19 +9,25 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import com.rewards.constants.RewardsConstants;
 import com.rewards.domain.Transaction;
 import com.rewards.repository.TransactionRepository;
 
+@Slf4j
 @Service
 public class RewardsServiceImpl implements RewardsService {
 
-	@Autowired
-	private TransactionRepository transactionRepository;
+	private final TransactionRepository transactionRepository;
+
+	public RewardsServiceImpl(TransactionRepository transactionRepository) {
+		this.transactionRepository = transactionRepository;
+	}
 
 	public Map<String, Map<String, Integer>> getRewardPoints() {
 		List<Transaction> transactionsData = transactionRepository.findAll();
@@ -38,7 +44,9 @@ public class RewardsServiceImpl implements RewardsService {
 	}
 
 	public void saveTransactions(List<Transaction> transactionsData) {
-		transactionsData.forEach(transaction -> transactionRepository.save(transaction));
+		ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 2);
+		transactionsData.forEach(transaction ->
+				executor.submit(() -> transactionRepository.save(transaction)));
 	}
 
 	private void addRewardPoints(Map<String, Map<String, Integer>> rewardsMap, Transaction transaction) {
@@ -77,15 +85,16 @@ public class RewardsServiceImpl implements RewardsService {
 		DateFormat format = new SimpleDateFormat(RewardsConstants.DATE_FORMAT);
 		try {
 			Date date = format.parse(transactionDate);
-			LocalDate localdDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-			return localdDate.getMonth().toString();
+			LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			return localDate.getMonth().toString();
 		} catch (ParseException e) {
+			log.error("Date format invalid, expected format is {}", RewardsConstants.DATE_FORMAT);
 		}
 		return null;
 	}
 
 	private Integer calculateTotalPoints(Map<String, Integer> customerMap) {
-		Integer totalPoints = 0;
+		int totalPoints = 0;
 		for (Map.Entry<String, Integer> entry : customerMap.entrySet())
 			if (!entry.getKey().equals(RewardsConstants.TOTAL))
 				totalPoints = totalPoints + entry.getValue();
