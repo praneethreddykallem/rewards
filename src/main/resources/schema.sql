@@ -1,7 +1,9 @@
-DROP TABLE IF EXISTS TRANSACTION;  
-CREATE TABLE TRANSACTION (  
-trnsctn_id INT AUTO_INCREMENT  PRIMARY KEY,  
-cust_name VARCHAR2(40) NOT NULL,  
-amount NUMBER NOT NULL,
-trnsctn_date VARCHAR2(10) NOT NULL  
-);  
+DROP TABLE IF EXISTS TRANSACTION;
+CREATE TABLE TRANSACTION (trnsctn_id INT AUTO_INCREMENT  PRIMARY KEY,
+                             cust_name VARCHAR2(40) NOT NULL,
+                             amount NUMBER NOT NULL,
+                             trnsctn_date VARCHAR2(10) NOT NULL,
+                             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+--spring.sql.init.mode=embedded (default)
