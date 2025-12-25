@@ -44,9 +44,11 @@ public class RewardsServiceImpl implements RewardsService {
 	}
 
 	public void saveTransactions(List<Transaction> transactionsData) {
-		ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 2);
+		/*ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 2);
 		transactionsData.forEach(transaction ->
-				executor.submit(() -> transactionRepository.save(transaction)));
+				executor.submit(() -> transactionRepository.save(transaction)));*/
+		//not using since jpa already has batching capabilities, enabled using properties
+		transactionRepository.saveAll(transactionsData);
 	}
 
 	private void addRewardPoints(Map<String, Map<String, Integer>> rewardsMap, Transaction transaction) {
