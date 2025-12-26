@@ -9,8 +9,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -44,11 +42,11 @@ public class RewardsServiceImpl implements RewardsService {
 	}
 
 	public void saveTransactions(List<Transaction> transactionsData) {
-		/*ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 2);
-		transactionsData.forEach(transaction ->
-				executor.submit(() -> transactionRepository.save(transaction)));*/
-		//not using since jpa already has batching capabilities, enabled using properties
 		transactionRepository.saveAll(transactionsData);
+	}
+
+	public List<Transaction> getTransactions() {
+		return transactionRepository.findAll();
 	}
 
 	private void addRewardPoints(Map<String, Map<String, Integer>> rewardsMap, Transaction transaction) {

@@ -44,4 +44,9 @@ public class RewardsController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
+	@GetMapping("/transactions")
+	public ResponseEntity<List<Transaction>> getTransactions() {
+		return new ResponseEntity<>(rewardsService.getTransactions(), HttpStatus.OK);
+	}
+
 }

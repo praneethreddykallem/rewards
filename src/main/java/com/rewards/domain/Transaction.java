@@ -1,24 +1,30 @@
 package com.rewards.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import com.rewards.constants.RewardsConstants;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Table(name = "TRANSACTION")
-@Data
+@Getter
+@Setter
 public class Transaction {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "txn_seq")
+	@SequenceGenerator(
+			name = "txn_seq",
+			sequenceName = "txn_seq",
+			allocationSize = 1
+	)
 	@Column(name = "trnsctn_id")
-	@NotNull(message = RewardsConstants.ERROR_MESSAGE_TRANSACTION_ID)
 	private Integer transactionId;
 	
 	@Column(name = "cust_name")
@@ -32,5 +38,8 @@ public class Transaction {
 	@Column(name = "trnsctn_date")
 	@NotEmpty(message = RewardsConstants.ERROR_MESSAGE_DATE)
 	private String transactionDate;
+
+	@OneToMany(mappedBy = "transaction", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<TransactionDetails> details;
 	
 }
