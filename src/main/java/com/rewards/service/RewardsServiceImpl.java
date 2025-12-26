@@ -51,7 +51,7 @@ public class RewardsServiceImpl implements RewardsService {
 	}
 
 	public List<Transaction> getTransactions() {
-		return transactionRepository.findAll();
+		return transactionRepository.findAllWithDetails();
 	}
 
 	private void addRewardPoints(Map<String, Map<String, Integer>> rewardsMap, Transaction transaction) {
