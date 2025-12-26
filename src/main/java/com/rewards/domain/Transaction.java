@@ -1,5 +1,6 @@
 package com.rewards.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import com.rewards.constants.RewardsConstants;
@@ -40,6 +41,7 @@ public class Transaction {
 	private String transactionDate;
 
 	@OneToMany(mappedBy = "transaction", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private List<TransactionDetails> details;
 	
 }

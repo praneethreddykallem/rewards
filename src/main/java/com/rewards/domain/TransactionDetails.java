@@ -1,5 +1,6 @@
 package com.rewards.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +22,7 @@ public class TransactionDetails {
 
     @ManyToOne
     @JoinColumn(name = "trnsctn_id")
+    @JsonBackReference
     private Transaction transaction;
 
     private String jsonDetails;

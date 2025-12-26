@@ -5,17 +5,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import com.rewards.domain.TransactionDetails;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import com.rewards.constants.RewardsConstants;
 import com.rewards.domain.Transaction;
 import com.rewards.repository.TransactionRepository;
+import org.springframework.util.CollectionUtils;
 
 @Slf4j
 @Service
@@ -42,6 +41,12 @@ public class RewardsServiceImpl implements RewardsService {
 	}
 
 	public void saveTransactions(List<Transaction> transactionsData) {
+		for(Transaction transaction: transactionsData) {
+			if(CollectionUtils.isEmpty(transaction.getDetails())) continue;
+			for (TransactionDetails d : transaction.getDetails()) {
+				d.setTransaction(transaction);
+			}
+		}
 		transactionRepository.saveAll(transactionsData);
 	}
 

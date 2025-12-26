@@ -1,0 +1,40 @@
+[
+	{ "customerName": "Greg", "amount": 120, "transactionDate": "05-01-2019" },
+	{ "customerName": "Greg", "amount": 75,  "transactionDate": "05-21-2019" },
+	{ "customerName": "Greg", "amount": 94,  "transactionDate": "05-21-2019" },
+	{ "customerName": "Greg", "amount": 10,  "transactionDate": "06-01-2019" },
+	{ "customerName": "Greg", "amount": 75,  "transactionDate": "06-21-2019" },
+	{ "customerName": "Greg", "amount": 200, "transactionDate": "07-01-2019" },
+	{ "customerName": "Greg", "amount": 1,   "transactionDate": "07-04-2019" },
+	{ "customerName": "Greg", "amount": 80,  "transactionDate": "07-03-2019" },
+	{ "customerName": "Greg", "amount": 224, "transactionDate": "07-21-2019" },
+
+	{ "customerName": "Tom", "amount": 125, "transactionDate": "05-01-2019" },
+	{ "customerName": "Tom", "amount": 75,  "transactionDate": "05-21-2019" },
+	{ "customerName": "Tom", "amount": 10,  "transactionDate": "06-01-2019" },
+	{ "customerName": "Tom", "amount": 75,  "transactionDate": "06-21-2019" },
+	{ "customerName": "Tom", "amount": 200, "transactionDate": "07-01-2019" },
+	{ "customerName": "Tom", "amount": 224, "transactionDate": "07-21-2019" },
+
+	{ "customerName": "Taylor", "amount": 120, "transactionDate": "06-21-2019" },
+
+	{ "customerName": "Taylor", "amount": 90,  "transactionDate": "05-11-2019" },
+	{ "customerName": "Taylor", "amount": 45,  "transactionDate": "05-25-2019" },
+	{ "customerName": "Taylor", "amount": 300, "transactionDate": "07-10-2019" },
+
+	{ "customerName": "Sam", "amount": 60,  "transactionDate": "05-03-2019" },
+	{ "customerName": "Sam", "amount": 140, "transactionDate": "06-15-2019" },
+	{ "customerName": "Sam", "amount": 220, "transactionDate": "07-18-2019" },
+
+	{ "customerName": "Alex", "amount": 35,  "transactionDate": "05-07-2019" },
+	{ "customerName": "Alex", "amount": 95,  "transactionDate": "06-09-2019" },
+	{ "customerName": "Alex", "amount": 180, "transactionDate": "07-22-2019" },
+
+	{ "customerName": "Greg", "amount": 55,  "transactionDate": "05-30-2019" },
+	{ "customerName": "Greg", "amount": 130, "transactionDate": "06-25-2019" },
+
+	{ "customerName": "Tom", "amount": 88,  "transactionDate": "05-14-2019" },
+	{ "customerName": "Tom", "amount": 160, "transactionDate": "07-05-2019" },
+
+	{ "customerName": "Taylor", "amount": 210, "transactionDate": "07-12-2019" }
+]
