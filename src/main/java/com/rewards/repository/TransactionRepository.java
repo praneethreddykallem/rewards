@@ -2,16 +2,20 @@ package com.rewards.repository;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.rewards.domain.Transaction;
 
 @Repository
-public interface TransactionRepository extends CrudRepository<Transaction, String> {
+public interface TransactionRepository extends CrudRepository<Transaction, Integer> {
 
 	List<Transaction> findByCustomerName(String customerName);
 	
 	List<Transaction> findAll();
+
+	@Query("SELECT t FROM Transaction t LEFT JOIN FETCH t.details")
+	List<Transaction> findAllWithDetails();
 
 }

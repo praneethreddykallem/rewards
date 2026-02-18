@@ -3,10 +3,9 @@ package com.rewards.controller;
 import java.util.List;
 import java.util.Map;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -24,10 +23,13 @@ import com.rewards.service.RewardsService;
 @RequestMapping("/rewards")
 public class RewardsController {
 
-	@Autowired
-	private RewardsService rewardsService;
+	private final RewardsService rewardsService;
 
-	@PostMapping("/transactions")
+    public RewardsController(RewardsService rewardsService) {
+        this.rewardsService = rewardsService;
+    }
+
+    @PostMapping("/transactions")
 	public ResponseEntity<Void> saveTransactions(
 			@RequestBody @NotEmpty(message = "Input Transaction list cannot be empty.") List<@Valid Transaction> transactionsData) {
 
@@ -40,6 +42,11 @@ public class RewardsController {
 
 		Map<String, Map<String, Integer>> response = rewardsService.getRewardPoints();
 		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+
+	@GetMapping("/transactions")
+	public ResponseEntity<List<Transaction>> getTransactions() {
+		return new ResponseEntity<>(rewardsService.getTransactions(), HttpStatus.OK);
 	}
 
 }

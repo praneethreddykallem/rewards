@@ -11,4 +11,6 @@ public interface RewardsService {
 
 	void saveTransactions(List<Transaction> transactionsData);
 
+	List<Transaction> getTransactions();
+
 }
